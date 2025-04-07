@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div class="container">
+    <form class="login-box" onsubmit="return validarFormulario()">
+      <h1>LOGIN</h1>
+
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" placeholder="Digite seu nome" required />
+
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" placeholder="Digite seu CPF" required />
+
+      <label for="sus">Cartão SUS</label>
+      <input type="text" id="sus" placeholder="Digite o número do cartão SUS" required />
+
+     
+
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script src="src/script.js"></script>
+</body>
+</html>
