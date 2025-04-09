@@ -1,27 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Exames Laboratoriais</title>
-  <link rel="stylesheet" href="src/exames.css">
+  <link rel="stylesheet" href="src/exames.css" />
 </head>
 <body>
   <div class="container">
     <h1>Exames Laboratoriais</h1>
     <div class="grid">
-      <div class="exame" title="Detecta níveis de glicose no sangue.">Glicemia</div>
-      <div class="exame" title="Avalia os glóbulos vermelhos, brancos e plaquetas.">Hemograma</div>
-      <div class="exame" title="Verifica a função renal.">Creatinina</div>
-      <div class="exame" title="Avalia inflamações ou infecções.">PCR</div>
-      <div class="exame" title="Exame para verificação de função hepática.">TGO/TGP</div>
-      <div class="exame" title="Verifica colesterol total e frações.">Perfil Lipídico</div>
-      <div class="exame" title="Analisa a presença de proteínas e glicose na urina.">Urina 1</div>
-      <div class="exame" title="Exame para identificar infecções.">EAS</div>
-      <div class="exame" title="Verifica ácido úrico no sangue.">Ácido Úrico</div>
-      <div class="exame" title="Avalia níveis hormonais da tireoide.">TSH/T4 Livre</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Glicemia" title="Detecta níveis de glicose no sangue.">Glicemia</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Hemograma" title="Avalia os glóbulos vermelhos, brancos e plaquetas.">Hemograma</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Creatinina" title="Verifica a função renal.">Creatinina</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="PCR" title="Avalia inflamações ou infecções.">PCR</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="TGO/TGP" title="Exame para verificação de função hepática.">TGO/TGP</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Perfil Lipídico" title="Verifica colesterol total e frações.">Perfil Lipídico</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Urina 1" title="Analisa a presença de proteínas e glicose na urina.">Urina 1</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="EAS" title="Exame para identificar infecções.">EAS</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Ácido Úrico" title="Verifica ácido úrico no sangue.">Ácido Úrico</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="TSH/T4 Livre" title="Avalia níveis hormonais da tireoide.">TSH/T4 Livre</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Bilirrubinas" title="Exame para avaliar a função hepática.">Bilirrubinas</div>
+      <div class="exame" onclick="selecionarExame(this)" data-nome="Calprotectina" title="Detecta infecções ou inflamações intestinais.">Calprotectina</div>
+    
     </div>
+    <button class="botao-avancar" onclick="irParaAgendamento()">Avançar</button>
   </div>
+
+  <script>
+    let examesSelecionados = [];
+
+    function selecionarExame(elemento) {
+      const nome = elemento.dataset.nome;
+      elemento.classList.toggle('selecionado');
+
+      if (examesSelecionados.includes(nome)) {
+        examesSelecionados = examesSelecionados.filter(e => e !== nome);
+      } else {
+        examesSelecionados.push(nome);
+      }
+
+      localStorage.setItem('examesSelecionados', JSON.stringify(examesSelecionados));
+    }
+
+    function irParaAgendamento() {
+  const examesSalvos = JSON.parse(localStorage.getItem('examesSelecionados')) || [];
+
+  if (examesSalvos.length > 0) {
+    window.location.href = "agendamento.html";
+  } else {
+    alert("Selecione pelo menos um exame para continuar.");
+  }
+}
+
+
+    // Recuperar seleção ao voltar
+    window.onload = function () {
+      const examesSalvos = JSON.parse(localStorage.getItem('examesSelecionados')) || [];
+      examesSelecionados = examesSalvos;
+
+      document.querySelectorAll('.exame').forEach(div => {
+        const nome = div.dataset.nome;
+        if (examesSalvos.includes(nome)) {
+          div.classList.add('selecionado');
+        }
+      });
+    };
+  </script>
+  
 </body>
 </html>
-
