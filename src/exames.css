@@ -1,73 +1,102 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  body {
-    background-color: #f3f4f6;
-    padding: 20px;
-  }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  h1 {
-    margin-bottom: 30px;
-    color: #333;
-  }
-  
-  .grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.exame {
+  background-color: #0077ff;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.exame:hover {
+  background-color: #005ddd;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.exame::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.exame:hover::after {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
   .exame {
-    background-color: #0077ff;
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    position: relative;
-  }
-  
-  .exame:hover {
-    background-color: #005ddd;
-    transform: scale(1.05);
-  }
-  
-  .exame::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    white-space: nowrap;
     font-size: 14px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    padding: 16px;
   }
-  
-  .exame:hover::after {
-    opacity: 1;
-  }
-  
-  @media (max-width: 600px) {
-    .exame {
-      font-size: 14px;
-      padding: 16px;
-    }
-  }
-  
+}
+
+.exame.selecionado {
+  background-color: #e0f0ff;
+  color: #0077ff;
+  border: 2px solid #007bff;
+  font-weight: bold;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.botao-avancar {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  max-width: 200px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.botao-avancar:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
